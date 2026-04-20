@@ -47,50 +47,18 @@
   body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--text); min-height: 100vh; }
 
   /* ── Header ── */
-  header { background: var(--green); padding: 28px 24px 0; }
+  header { background: var(--green); padding: 32px 24px 0; }
 
   .header-top {
-    display: flex; align-items: center; gap: 20px;
-    max-width: 900px; margin: 0 auto 22px;
+    display: flex; align-items: center; gap: 18px;
+    max-width: 900px; margin: 0 auto 24px;
   }
 
-  /* Baseball-Pill links */
-  .sport-pill {
-    display: flex; flex-direction: column; align-items: center; justify-content: center;
-    gap: 3px;
-    background: rgba(255,255,255,0.12);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 12px;
-    padding: 10px 16px;
-    flex-shrink: 0;
-  }
-  .sport-pill .sport-main {
-    font-family: 'Bebas Neue', sans-serif;
-    font-size: 18px; letter-spacing: 3px; color: white; line-height: 1;
-  }
-  .sport-pill .sport-sub {
-    font-size: 9px; letter-spacing: 2px; color: rgba(255,255,255,0.55);
-    font-weight: 600; line-height: 1;
-  }
-
-  .header-divider {
-    width: 1px; height: 48px;
-    background: rgba(255,255,255,0.18);
-    flex-shrink: 0;
-  }
-
-  .header-text { display: flex; flex-direction: column; gap: 4px; }
   .header-text h1 {
     font-family: 'Bebas Neue', sans-serif;
-    font-size: 36px; color: white; letter-spacing: 2px; line-height: 1;
+    font-size: 38px; color: white; letter-spacing: 2px; line-height: 1;
   }
-  .header-meta {
-    display: flex; align-items: center; gap: 8px;
-  }
-  .header-meta span {
-    font-size: 10px; color: rgba(255,255,255,0.5); letter-spacing: 1.5px; font-weight: 600;
-  }
-  .header-meta .dot { color: rgba(255,255,255,0.25); }
+  .header-text p { font-size: 12px; color: rgba(255,255,255,0.55); letter-spacing: 2px; margin-top: 4px; }
 
   .nav-tabs { max-width: 900px; margin: 0 auto; display: flex; gap: 2px; }
   .nav-tab {
@@ -196,20 +164,61 @@
 
   /* ── Responsive ── */
   @media (max-width: 600px) {
-    .header-text h1 { font-size: 28px; }
-    .sport-pill .sport-main { font-size: 15px; }
+    .header-text h1 { font-size: 30px; }
 
-    /* Spielplan */
-    .game-card { flex-wrap: wrap; gap: 12px; padding: 14px 16px; }
-    .matchup { order: 2; width: 100%; flex: unset; justify-content: flex-start; gap: 16px; }
-    .team { width: auto; }
-    .team-name { font-size: 13px; }
-    .vs-sep { font-size: 13px; }
-    .info-col { order: 3; width: 100%; flex: unset; text-align: left; border-top: 1px solid var(--border); padding-top: 10px; }
+    /* Spielplan: Matchup groß in der Mitte, darunter Datum + Info nebeneinander */
+    .game-card {
+      flex-wrap: wrap;
+      gap: 0;
+      padding: 14px 16px;
+    }
+
+    /* Zeile 1: Datum links, Badge+Zeit rechts */
+    .date-col {
+      flex: 1;
+      border-right: none;
+      border-bottom: 1px solid var(--border);
+      padding-right: 0;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .date-col .day { font-size: 26px; }
+    .date-col .mon, .date-col .dow { font-size: 11px; margin-top: 0; }
+
+    .info-col {
+      flex: unset;
+      width: auto;
+      text-align: right;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      justify-content: center;
+    }
     .game-time { font-size: 15px; }
-    .game-venue { font-size: 12px; }
-    .badge { font-size: 11px; padding: 4px 12px; }
-    .filter-btn { font-size: 13px; padding: 8px 18px; }
+    .game-venue { font-size: 11px; }
+    .badge { font-size: 11px; padding: 4px 12px; margin-bottom: 4px; }
+
+    /* Zeile 2: Matchup zentriert über die volle Breite */
+    .matchup {
+      order: 3;
+      width: 100%;
+      flex: unset;
+      justify-content: center;
+      gap: 20px;
+      padding-top: 2px;
+    }
+    .team { width: auto; text-align: center; }
+    .team-name { font-size: 14px; letter-spacing: 1px; }
+    .vs-sep { font-size: 12px; }
+
+    .filter-btn { font-size: 13px; padding: 8px 16px; }
     .stat-card .val { font-size: 28px; }
     .stat-card .lbl { font-size: 12px; }
 
@@ -235,18 +244,9 @@
 
 <header>
   <div class="header-top">
-    <div class="sport-pill">
-      <div class="sport-main">BASEBALL</div>
-      <div class="sport-sub">LANDESLIGA</div>
-    </div>
-    <div class="header-divider"></div>
     <div class="header-text">
       <h1>Freiburg Knights</h1>
-      <div class="header-meta">
-        <span>LANDESLIGA</span>
-        <span class="dot">·</span>
-        <span>SAISON 2026</span>
-      </div>
+      <p>LANDESLIGA BASEBALL · SAISON 2026</p>
     </div>
   </div>
   <div class="nav-tabs">
